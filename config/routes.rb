@@ -4,7 +4,13 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'user#index'
-  resources :user, except: [:new, :edit , :show]
+  #resources :user, except: [:new, :edit , :show]
+  post 'user' => 'user#create'
+  put 'user' => 'user#update'
+  patch 'user' => 'user#update'
+  delete 'user' => 'user#destroy'
+
+  post 'user/signin' => 'user#signin'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
