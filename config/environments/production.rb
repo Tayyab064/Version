@@ -35,6 +35,28 @@ Rails.application.configure do
   # yet still be able to expire them through the digest params.
   config.assets.digest = true
 
+  config.action_mailer.default_url_options = { :host => 'https://wifi-api.herokuapp.com' }
+
+  #config.action_mailer.delivery_method = :smtp
+  #config.action_mailer.smtp_settings = {:address => "localhost", :port => 1025}
+
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default :charset => "utf-8"
+
+
+  config.action_mailer.smtp_settings = {
+  :address => "smtpout.asia.secureserver.net",
+  :port => 3535,
+  :domain => 'www.wifiexplore.com',
+  :authentication => :plain,   # I've also tried :login
+  :enable_starttls_auto => true,  # Also tried tls => true
+  :user_name => 'noreply@wifiexplore.com',
+  :password => 'AG@pass1',
+  :openssl_verify_mode => 'none'
+  }
+
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Specifies the header that your server uses for sending files.

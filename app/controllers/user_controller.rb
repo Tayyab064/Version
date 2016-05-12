@@ -3,7 +3,12 @@ class UserController < ApplicationController
 
 	def create
 		@user = User.create(user_params)
-		render json: @user , status: :created
+		if @user.id.present?
+			UserMailer.welcome_email(@user).deliver_later
+			render json: @user , status: :created
+		else
+			render json: @user.errors , status: :unprocessable_entity
+		end
 	end
 
 	def index
