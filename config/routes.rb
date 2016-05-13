@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   delete 'user' => 'user#destroy'
 
   post 'user/signin' => 'user#signin'
+  get 'user/verify/email/:token' => 'verification#verify_email'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -4,6 +4,8 @@ class UserController < ApplicationController
 	def create
 		@user = User.create(user_params)
 		if @user.id.present?
+			@user.generate_email_token
+			@user.save
 			UserMailer.welcome_email(@user).deliver_later
 			render json: @user , status: :created
 		else
