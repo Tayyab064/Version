@@ -14,7 +14,7 @@ class UserController < ApplicationController
 	end
 
 	def signin
-		if user = User.find_by_email(params[:user][:email])
+		if user = User.approved.find_by_email(params[:user][:email])
 			if params[:user][:password].present?
 				if @user = user.authenticate(params[:user][:password])
 					@user.create_tokens
@@ -26,7 +26,7 @@ class UserController < ApplicationController
 				render json: {'message' => 'Params are missing'} , status: :bad_request
 			end
 		else
-			render json: {'message' => 'Kindly signup!'} , status: :unauthorized
+			render json: {'message' => 'Kindly signup or verify email!'} , status: :unauthorized
 		end
 	end
 

@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
 	after_create :create_tokens
 	validates_uniqueness_of :email
 
+	scope :approved , lambda {where(email_verified: true)}
+
 
 	def create_tokens
 	  	ApiKey.create :user => self
