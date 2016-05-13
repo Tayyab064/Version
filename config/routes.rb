@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   post 'user/signin' => 'user#signin'
   get 'user/verify/email/:token' => 'verification#verify_email'
-
+  post 'user/resend/email' => 'verification#resend_email_token'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
